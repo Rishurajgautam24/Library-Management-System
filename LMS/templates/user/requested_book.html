@@ -1,0 +1,63 @@
+{% extends "user/base.html" %}
+{% block title %}
+Home  | Requested Book
+{% endblock %}
+{% block content %}
+
+<div class="mt-5">
+    <h1 class="text-center fw-bold">Add a Book</h1>
+    <div class="container">
+
+    <div class="container-form mt-5">
+        <form action="/user/request-book/{{book.id}}" method="POST">
+            <div class="mb-3">
+                <label for="book_name" class="form-label">Book Name</label>
+                <input type="text" class="form-control" id="book_name" name="book_name" value="{{book.name}}" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="author" class="form-label">Author</label>
+                <input type="text" class="form-control" id="author" name="author" value="{{book.author}}"readonly>
+            </div>
+            <div class="mb-3">
+                <label for="isbn" class="form-label">ISBN</label>
+                <input type="text" class="form-control" id="isbn" name="isbn" value="{{book.isbn}}" readonly>
+            </div>
+            
+            <div class="mb-3">
+                <label for="section_name" class="form-label" name="section_name">Section Name</label>
+                <input type="text" class="form-control" id="isbn" name="isbn" value="{{section.name}}" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="section_name" class="form-label" name="days">No of Days</label>
+                <select class="form-select" aria-label="Default select example" id="days" name="days">
+                    <option selected>Select the Section</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="others">Others</option>
+                </select>
+            </div>
+            <div id="otherSection" class="mb-3 hidden">
+                <label for="other_section" class="form-label">Other Section</label>
+                <input type="text" class="form-control" id="other_section" name="others">
+            </div>
+            <script>
+                document.getElementById('days').addEventListener('change', function() {
+                    if (this.value === 'others') {
+                        document.getElementById('otherSection').classList.remove('hidden');
+                    } else {
+                        document.getElementById('otherSection').classList.add('hidden');
+                    }
+                });
+            </script>
+
+            <button type="submit" class="btn btn-primary">Request Book</button>
+        </form>
+    </div>
+</div>
+
+    {% endblock %}

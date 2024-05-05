@@ -1,0 +1,27 @@
+{% extends "librarian/base.html" %}
+{% block title %}
+Library | Edit Section
+{% endblock %}
+{% block content %}
+
+<div>
+    <h1 class="text-center fw-bold">Edit Section</h1>
+    <div class="container">
+    <div class="container-form mt-5">
+        <form action="/librarian/edit_section/{{section.id}}" method="POST">
+            <div class="mb-3">
+                <label for="section_name" class="form-label">Section Name</label>
+                <input type="text" class="form-control" id="section_name" name="section_name" value="{{section.name}}">
+                
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3">{{section.description}}</textarea>
+            </div>
+  
+            <button type="submit" class="btn btn-primary">Update Section</button>
+        </form>
+    </div>
+</div>
+
+    {% endblock %}

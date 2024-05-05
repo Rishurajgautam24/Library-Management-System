@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}
+Home | Request Book
+{% endblock %}
+{% block content %}
+<div>
+  {% include 'user/navbar.html' %}
+</div>
+
+<div class="container mt-5">
+  <div class="container mt-5">
+    <h5>Recently Added Books</h5>
+    <div class="row row-cols-1 row-cols-md-5 g-4">
+      {% for book in recent_books %}
+      <div class="col">
+        <div class="card card-book">
+          <img src="https://source.unsplash.com/random/250×250/?{{book.name}}" class="card-img-top" alt="image">
+          <div class="card-body">
+            <h5 class="card-title">{{book.name}}</h5>
+            <p class="card-text"><i>{{book.author}}</i></p>
+            <p class="card-text"><b>ISBN:</b>{{book.isbn}}</p>
+          </div>
+          <div class="card-footer">
+            <a href="/user/request-book/{{ book.id }}" class="btn btn-primary">Request</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<div class="container mt-5 ">
+  <div class="mt-5 d-flex align-items-center justify-content-between">
+    <h2 class="flex-shrink-0">
+      All Books List
+    </h2>
+    <!-- create a search button  -->
+    <form action="/user/search-book" method="POST" class="flex-grow-2 ms-3">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search Books" name="search">
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
+      </div>
+    </form>
+  </div>
+  <table class="table  table-bordered table-striped table-hover">
+    <thead class="table-success">
+      <tr>
+        <th>Book ID</th>
+        <th>Book Name</th>
+        <th>Author</th>
+        <th>ISBN</th>
+        <th>Section Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in books %}
+      <tr>
+        <td>{{ book.id }}</td>
+        <td>{{ book.name }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.isbn }}</td>
+        <td>{{ book.section.name }}</td>
+        <td>
+          <a href="/user/request-book/{{ book.id }}" class="btn btn-success">Request</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}
+{% endblock %}
+
+
+<div class="container mx-auto mt-5">
+    {% include "librarian/navbar.html" %}
+    <!-- Main Content Here -->
+    <div class="container text-center mt-3">
+        <h1>Welcome to the Library Home</h1>
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</div>
+
+
+

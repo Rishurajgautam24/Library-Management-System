@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}
+Home | Library
+{% endblock %}
+{% block content %}
+
+<div class="container1">
+    <div class="d-flex row justify-content-center text-center p-3">
+        <h1 class="fw-bold">Welcome to the Library HomePage</h1>
+        <div class="d-flex justify-content-around gap-4 p-3">
+            <a href="{{ url_for('auth.login') }}" class="btn btn-primary flex-fill">Login</a>
+            <a href="{{ url_for('auth.signup') }}" class="btn btn-primary flex-fill">Sign Up</a>
+        </div>
+        <hr>
+    </div>
+    
+    <div class="container mt-5">
+        <div class="row row-cols-1 row-cols-md-5 g-4">
+            {% for book in books %}
+            <div class="col">
+              <div class="card card-book">
+                <img src="https://source.unsplash.com/random/250×250/?{{book.name}}" class="card-img-top" alt="image">
+                <div class="card-body">
+                  <h5 class="card-title">{{book.name}}</h5>
+                  <p class="card-text"><i>{{book.author }}</i></p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+    </div>
+</div>
+
+{% endblock %}

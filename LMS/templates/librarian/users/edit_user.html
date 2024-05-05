@@ -1,0 +1,87 @@
+{% extends "librarian/base.html" %}
+{% block title %}
+Library | Edit User
+{% endblock %}
+{% block content %}
+
+<div>
+    <h1 class="text-center fw-bold">Edit User Details</h1>
+    <div class="container">
+    <div class="container-form mt-5">
+        <form action="/librarian/edit_user/{{ user.id }}" method="POST">
+            <div class="card-body p-5">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="username" class="form-control hover-shadow" id="username" name="username"
+                        placeholder="Username" value="{{user.username}}">
+                </div>
+                <br />
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control hover-shadow" id="password"
+                        placeholder="Enter your Password" name="password">
+                </div>
+                <br />
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" class="form-control hover-shadow" id="confirm_password"
+                        placeholder="Enter your Confirm Password" name="confirm_password">
+                </div>
+                <br />
+                <div class="d-flex justify-content-start gap-4">
+                    <div class="form-group flex-fill">
+                        <label for="fname">First Name</label>
+                        <input type="fname" class="form-control hover-shadow" id="fname" name="fname"
+                            placeholder="{{user.fname}}" value="{{user.fname}}">
+                    </div>
+                    <div class="form-group flex-fill ">
+                        <label for="lname">Last Name</label>
+                        <input type="fname" class="form-control hover-shadow" id="lname" name="lname"
+                            placeholder="{{user.lname}}" value="{{user.lname}}">
+                    </div>
+                </div>
+                <br />
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control hover-shadow" id="email" name="email"
+                        placeholder="{{user.email}}" value="{{user.email}}">
+                </div>
+                <br />
+                <div class="d-flex justify-content-start gap-4">
+                <div class="form-group flex-fill">
+                    <label for="gender">Gender</label>
+                    <select class="form-select hover-shadow" id="gender" name="gender">
+                        <option value="{{user.gender}}">{{user.gender}}</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="others">Others</option>
+                    </select>
+                </div>
+                <div class="form-group flex-fill">
+                    <label for="role">Role</label>
+                    <select class="form-select hover-shadow" id="role" name="role">
+                        {% if user.role == 1 %}
+                        <option value="1">Admin</option>
+                        {% else %}
+                        <option value="0">User</option>
+                        {% endif %}
+                        <option value="1">Admin</option>
+                        <option value="0">User</option>
+                    </select>
+                </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label for="contact_no">Contact Number</label>
+                    <input type="contact_no" class="form-control hover-shadow" id="contact_no" name="contact_no"
+                        placeholder="{{user.contact_no}}" value="{{user.contact_no}}">
+                </div>
+
+            <br>
+            <button type="submit" class="btn btn-primary">Update User</button>
+        </form>
+    </div>
+</div>
+
+    {% endblock %}

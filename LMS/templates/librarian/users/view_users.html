@@ -1,0 +1,62 @@
+{% extends "librarian/base.html" %}
+{% block title %}
+Library | View Users
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center fw-bold">Welcome to the Library Management System</h1>
+    <div class="mt-5 d-flex align-items-center justify-content-between">
+        <h2 class="flex-shrink-0">
+            All Users List
+        </h2>
+        <!-- create a search button  -->
+        <form action="/librarian/search-user" method="POST" class="flex-grow-2 ms-3">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search Books" name="search">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+    <hr>
+    <table class="mt-5 table  table-bordered table-striped table-hover">
+        <thead class="table-success">
+            <tr>
+                <th>User ID</th>
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Contact No</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.fname }}</td>
+                <td>{{ user.lname }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.gender }}</td>
+                <td>{{ user.contact_no }}</td>
+                {% if user.role=="1" %}
+                    <td>Admin</td>
+                {% else %}
+                    <td>User</td>
+                {% endif %}
+                <td>
+                    <a href="/librarian/edit_user/{{ user.id }}" class="btn btn-primary">Edit</a>
+                    <a href="/librarian/delete_user/{{ user.id }}" class="btn btn-danger">Delete</a>
+                </td>
+            
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "librarian/base.html" %}
+{% block title %}
+Home | Dashboard
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid mx-auto mt-5">
+
+    <!-- Main Content Here -->
+    <div class="container text-center mt-3">
+        <h1>Welcome to the Librarian Dashboard</h1>
+    </div>
+    <!-- Kpi's -->
+    <div class="container text-center mt-3">
+        <div class="d-flex justify-content-center">
+            <div class="container text-center mt-3 border p-3">
+                <h3>Total Books</h3>
+                <h1>{{ book_count }}</h1>
+            </div>
+            <div class="container text-center mt-3 border p-3">
+                <h3>Books Issued</h3>
+                <h1>{{ issued_books }}</h1>
+            </div>
+            <div class="container text-center mt-3 border p-3">
+                <h3>Books Requested</h3>
+                <h1>{{ requested_books }}</h1>
+            </div>
+        </div>
+
+ 
+    <div class="mb-3">
+        <div class="d-flex justify-content-start ">
+            <div class="container text-center mt-3 border">
+                <img src="{{ url_for('static', filename='images/book_availablity.png') }}" alt="Book Availablity" class="img-fluid">
+            </div>
+            <div class="container text-center mt-3 border">
+                <img src="{{ url_for('static', filename='images/transaction_history.png') }}" alt="Transaction History" class="img-fluid">
+            </div>
+
+        </div>
+        <div class="d-flex justify-content-start ">
+            <div class="container text-center mt-3 border ">
+                <img src="{{ url_for('static', filename='images/section_wise_book_count.png') }}" alt="Transaction History" class="img-fluid">
+            </div>
+            <div class="container text-center mt-3 border">
+                <img src="{{ url_for('static', filename='images/borrow_request_status.png') }}" alt="Book Availablity" class="img-fluid">
+            </div>
+        </div>
+    
+    </div>
+    
+
+</div>
+
+{% endblock %}

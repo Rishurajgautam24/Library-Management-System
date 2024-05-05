@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}
+Home | My Books
+{% endblock %}
+{% block content %}
+<div>
+    {% include 'user/navbar.html' %}
+</div>
+
+<div class="container mt-5">
+    <div class="container mt-5">
+        <div class="row row-cols-1 row-cols-md-5 g-4">
+            {% for book in books %}
+            <div class="col">
+              <div class="card card-book">
+                <img src="https://source.unsplash.com/random/250×250/?{{book.book.name}}" class="card-img-top" alt="image">
+                <div class="card-body">
+                  <h5 class="card-title">{{book.book.name}}</h5>
+                  <p class="card-text"><i>{{book.book.author }}</i></p>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                  <a href="/user/read-book/{{ book.book_id }}" class="btn btn-success">Read</a>
+                  <a href="/user/return-book/{{ book.book_id }}" class="btn btn-primary">Return</a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+    </div>
+</div>
+
+{% endblock %}

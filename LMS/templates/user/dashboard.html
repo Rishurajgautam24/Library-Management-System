@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}
+Home | Dashboard
+{% endblock %}
+{% block content %}
+<div>
+  {% include 'user/navbar.html' %}
+</div>
+
+<div class="container mt-5">
+  <div class="text-center">
+    <h1>Welcome to the Library Management System</h1>
+  </div>
+  <div class="container mt-5">
+    <div class="row row-cols-1 row-cols-md-5 g-4">
+      {% for book in data %}
+      <div class="col">
+        <div class="card card-book">
+          <img src="https://source.unsplash.com/random/250×250/?{{book.name}}" class="card-img-top" alt="image">
+          <div class="card-body">
+            <h5 class="card-title">{{book.name}}</h5>
+            <p class="card-text"><i>{{book.author }}</i></p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div>
+    <h1 class="text-center mt-5">Books by Section</h1>
+  </div>
+  <div class="mt-2 mb-5">
+    <div class="accordion mt-2" id="accordionExample">
+      {% for book in data|groupby('section_name') %}
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse{{ loop.index }}" aria-expanded="false" aria-controls="collapse{{ loop.index }}">
+            {{ book.grouper }}
+          </button>
+        </h2>
+        <div id="collapse{{ loop.index }}" class="accordion-collapse collapse" aria-labelledby="heading{{ loop.index }}"
+          data-bs-parent="#accordionExample">
+          <div class="container p-5">
+            <div class="row row-cols-1 row-cols-md-5 gap-4">
+              {% for item in book.list %}
+              <div class="col">
+                <div class="card card-book">
+                  <img src="https://source.unsplash.com/random/250×250/?{{ item.name }}" class="card-img-top" alt="image">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ item.name }}</h5>
+                    <p class="card-text"><i>{{ item.author }}</i></p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "librarian/base.html" %}
+{% block title %}
+Library | Add Book
+{% endblock %}
+{% block content %}
+
+<div>
+    <h1 class="text-center fw-bold">Add a Book</h1>
+    <div class="container">
+
+    <div class="container-form mt-5">
+        <form action="/librarian/add_book" method="POST">
+            <div class="mb-3">
+                <label for="book_name" class="form-label">Book Name</label>
+                <input type="text" class="form-control" id="book_name" name="book_name">
+            </div>
+            <div class="mb-3">
+                <label for="author" class="form-label">Author</label>
+                <input type="text" class="form-control" id="author" name="author">
+            </div>
+            <div class="mb-3">
+                <label for="isbn" class="form-label">ISBN</label>
+                <input type="text" class="form-control" id="isbn" name="isbn">
+            </div>
+            
+           <!-- it should send section id  in post request -->
+            <div class="mb-3">
+                <label for="section_name" class="form-label" name="section_name">Section Name</label>
+                <select class="form-select" aria-label="Default select example" id="section_name" name="section_name">
+                    <option selected>Select the Section</option>
+                    <!-- loop through the sections and display the section name -->
+                    {% for section in sections %}
+                    <option value="{{ section.name }}">{{ section.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="available" class="form-label">Available</label>
+                <!-- create two options saying true and false -->
+                <select class="form-select" aria-label="Default select example" id="available" name="available">
+                    <option selected>Select the Availablity</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+
+            <!-- content filed  -->
+            <div class="mb-3">
+                <label for="content" class="form-label">Content</label>
+                {{ ckeditor.create() }}
+            </div>
+            <button type="submit" class="btn btn-primary">Add Book</button>
+        </form>
+    </div>
+</div>
+
+    {% endblock %}

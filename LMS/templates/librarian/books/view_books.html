@@ -1,0 +1,87 @@
+{% extends "librarian/base.html" %}
+{% block title %}
+Library | View Books
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center fw-bold">Welcome to the Library Management System</h1>
+    <div class="mt-5 d-flex align-items-center justify-content-between">
+        <h2 class="flex-shrink-0">
+            All Books List
+        </h2>
+        <!-- create a search button  -->
+        <form action="/librarian/search-book" method="POST" class="flex-grow-2 ms-3">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search Books" name="search">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+    <hr>
+    <table class="mt-5 table  table-bordered table-striped table-hover">
+        <thead class="table-success">
+            <tr>
+                <th>Book ID</th>
+                <th>Book Name</th>
+                <th>Author</th>
+                <th>Section Name</th>
+                <th>Available</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td>{{ book.id }}</td>
+                <td>{{ book.name }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.section_name }}</td>
+                <td>{{ book.available }}</td>
+                <td>
+                    <a href="/librarian/edit_book/{{ book.id }}" class="btn btn-primary">Edit</a>
+                    <a href="/librarian/delete_book/{{ book.id }}" class="btn btn-danger">Delete</a> 
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+  <div>
+    <h1 class="text-center mt-5">Books by Section</h1>
+  </div>
+  <div class="mt-2 mb-5">
+    <div class="accordion mt-2" id="accordionExample">
+      {% for book in books|groupby('section_name') %}
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse{{ loop.index }}" aria-expanded="false" aria-controls="collapse{{ loop.index }}">
+            {{ book.grouper }}
+          </button>
+        </h2>
+        <div id="collapse{{ loop.index }}" class="accordion-collapse collapse" aria-labelledby="heading{{ loop.index }}"
+          data-bs-parent="#accordionExample">
+          <div class="container p-5">
+            <div class="row row-cols-1 row-cols-md-5 gap-4">
+              {% for item in book.list %}
+              <div class="col">
+                <div class="card card-book">
+                  <img src="https://source.unsplash.com/random/250×250/?{{ item.name }}" class="card-img-top" alt="image">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ item.name }}</h5>
+                    <p class="card-text"><i>{{ item.author }}</i></p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

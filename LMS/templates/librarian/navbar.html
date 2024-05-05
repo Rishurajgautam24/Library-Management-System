@@ -1,0 +1,79 @@
+<div class="container mx-auto m-5">
+    
+    <div>
+        <button class="btn btn-outline-success btn-lg btn-block" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions" id="menutoggler">Menu
+            Bar</button>
+    </div>
+    <div class="container mx-auto">
+        {% if message %}
+            {% if type %}
+            <div class="alert alert-{{type}} alert-dismissible fade show mt-3" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% else %}
+            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+        {% endif %}
+    </div>
+    <script>
+        setTimeout(function () {
+            document.querySelector('.alert').remove();
+        }, 3000);
+    </script>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+        aria-labelledby="offcanvasWithBothOptionsLabel">
+        <div class="offcanvas-header">
+            <h1 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Library Management System</h1>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <hr>
+            <div class="navigation-links">
+                <a href="{{ url_for('librarian.dashboard') }}">Home</a>
+                <hr>
+                <a href="#" class="dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#requests">Requests</a>
+                <div id="requests" class="collapse">
+                    <ul>
+                        <li><a href="{{ url_for('librarian.requested_books') }}" class="pl-4">View Requests</a></li>
+                        <li><a href="{{ url_for('librarian.approved_books') }}" class="pl-4">View Approved Books</a></li>
+                    </ul>
+                </div>
+                <hr>
+                <a href="#" class="dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#books">Books</a>
+                <div id="books" class="collapse">
+                    <ul>
+                        <li><a href="{{ url_for('librarian.view_books') }}" class="pl-4">View Books</a></li>
+                        <li><a href="{{ url_for('librarian.add_book') }}" class="pl-4">Add Books</a></li>
+                    </ul>
+                </div>
+                <hr>
+                <a href="#" class="dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#sections">Sections</a>
+                <div id="sections" class="collapse">
+                    <ul>
+                        <li><a href="{{ url_for('librarian.view_sections') }}" class="pl-4">View Sections</a></li>
+                        <li><a href="{{ url_for('librarian.add_section') }}" class="pl-4">Add Sections</a></li>
+                    </ul>
+                </div>
+                <hr>
+                <a href="#" class="dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#users">Users</a>
+                <div id="users" class="collapse">
+                    <ul>
+                        <li><a href="{{ url_for('librarian.view_users') }}" class="pl-4">View Users</a></li>
+                        <li><a href="{{ url_for('librarian.add_user') }}" class="pl-4">Add Users</a></li>
+                    </ul>
+                </div>
+                <hr>
+                <a href="{{ url_for('librarian.auto_revoke') }}">Auto Revoke Expired</a>
+                <hr>
+                <a href="{{ url_for('librarian.feedback') }}">View Feedback</a>
+                <hr>
+                <a href="{{ url_for('auth.logout') }}">Log Out</a>
+            </div>
+        </div>
+    </div>
+</div>

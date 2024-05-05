@@ -1,0 +1,47 @@
+{% extends "librarian/base.html" %}
+{% block title %}
+Library | Approved Books
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center fw-bold">Welcome to the Library Management System</h1>
+    <div class="mt-5 d-flex align-items-center justify-content-between">
+        <h2 class="flex-shrink-0">
+            All Approved Books List
+        </h2>
+    </div>
+    <hr>
+    <table class="mt-5 table  table-bordered table-striped table-hover">
+        <thead class="table-success">
+            <tr>
+                <th>Book ID</th>
+                <th>User ID</th>
+                <th>Book Name</th>
+                <th>User Name</th>
+                <th>Request Date</th>
+                <th>Return Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td>{{ book.book_id }}</td>
+                <td>{{ book.user_id }}</td>
+                <td>{{ book.book.name }}</td>
+                <td>{{ book.user.username }}</td>
+                <td>{{ book.borrowed_date }}</td>
+                <td>{{ book.returning_date }}</td>
+                <td>
+                    <a href="/librarian/revoke/{{ book.id }}" class="btn btn-success">Revoke</a>
+                    <a href="/librarian/download/{{ book.id }}" class="btn btn-primary">Allow Download</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

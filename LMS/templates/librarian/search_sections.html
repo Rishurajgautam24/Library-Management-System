@@ -1,0 +1,45 @@
+{% extends "librarian/base.html" %}
+{% block title %}
+Home | Search results
+{% endblock %}
+{% block content %}
+<div class="container mt-5 ">
+  <div class="mt-5 d-flex align-items-center justify-content-between">
+    <h2 class="flex-shrink-0">
+      Search results
+    </h2>
+    <form action="/librarian/search-sections" method="POST" class="flex-grow-2 ms-3">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search Books" name="search">
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
+      </div>
+    </form>
+  </div>
+  <table class="mt-5 table  table-bordered table-striped table-hover">
+    <thead class="table-success">
+        <tr>
+            <th>Section ID</th>
+            <th>Section Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for section in sections %}
+        <tr>
+            <td>{{ section.id }}</td>
+            <td>{{ section.name }}</td>
+            <td>{{ section.description }}</td>
+
+            <td>
+                <a href="/librarian/edit_section/{{ section.id }}" class="btn btn-primary">Edit</a>
+                <a href="/librarian/delete_section/{{ section.id }}" class="btn btn-danger">Delete</a> 
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</div>
+
+{% endblock %}

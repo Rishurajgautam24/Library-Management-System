@@ -1,0 +1,43 @@
+{% extends "librarian/base.html" %}
+{% block title %}
+Library | Add User
+{% endblock %}
+{% block content %}
+
+<div>
+    <h1 class="text-center fw-bold">Add a User</h1>
+    <div class="container">
+    <div class="container-form mt-5">
+        <form action="/librarian/add_user" method="POST">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="username" class="form-control hover-shadow" id="username" name="username"
+                        placeholder="Enter Username">
+                </div>
+                <br />
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control hover-shadow" id="password"
+                        placeholder="Enter your Password" name="password">
+                </div>
+                <br />
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" class="form-control hover-shadow" id="confirm_password"
+                        placeholder="Enter your Confirm Password" name="confirm_password">
+                </div>
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <select class="form-select hover-shadow" id="role" name="role">
+                        <option value="1">Admin</option>
+                        <option value="0">User</option>
+                    </select>
+                </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+    {% endblock %}

@@ -1,0 +1,24 @@
+{% extends "user/base.html" %}
+{% block title %}
+Library | Feedback
+{% endblock %}
+{% block content %}
+
+<div>
+    <h1 class="text-center fw-bold">Add a Feedback</h1>
+    <div class="container">
+
+    
+    <div class="container-form mt-5">
+        <form method="POST">
+            <div class="mb-3">
+                <label for="feedback" class="form-label">Feedback</label>
+                <textarea class="form-control" id="feedback" name="feedback" rows="3" required></textarea>
+            </div>
+  
+            <button type="submit" class="btn btn-primary">Add Feedback</button>
+        </form>
+    </div>
+</div>
+
+    {% endblock %}

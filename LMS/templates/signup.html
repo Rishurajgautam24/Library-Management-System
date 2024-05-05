@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}
+Home | Register
+{% endblock %}
+{% block content %}
+<div class="container mx-auto">
+    {% if message %}
+        {% if type %}
+        <div class="alert alert-{{type}} alert-dismissible fade show mt-3" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% else %}
+        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+    {% endif %}
+</div>
+
+<div class="container container-fluid">
+    <div class="mt-5">
+        <h1 align="center" id="heading">Welcome to Library Management System</h1>
+        <form class="w-75 mx-auto border border-1 rounded-4 p-5 mt-4 hover-shadow" method="post">
+            <h1 class="text-center" id="role-heading">Admin Login </h1>
+            <div class="form-group">
+                <label for="role">Role</label>
+                <select class="form-select hover-shadow" id="role" name="role">
+                    <option value="Admin">Admin</option>
+                    <option value="User">User</option>
+                </select>
+            </div>
+            <br />
+            <script>
+                document.getElementById('role').addEventListener('change', function () {
+                    var role = document.getElementById('role').value;
+                    document.getElementById('role-heading').innerText = role + ' Signin';
+                });
+            </script>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="username" class="form-control hover-shadow" id="username" name="username"
+                        placeholder="Enter Username" required>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control hover-shadow" id="password"
+                        placeholder="Enter your Password" name="password" required>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" class="form-control hover-shadow" id="confirm_password"
+                        placeholder="Enter your Confirm Password" name="confirm_password" required>
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+                <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Log in</a>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}
+Home | Read Book
+{% endblock %}
+{% block content %}
+<div>
+    {% include 'user/navbar.html' %}
+</div>
+
+<div class="container mt-5">
+    
+    <div class="d-flex justify-content-end gap-3">
+        {% if permission %}
+        <button type="submit" class="btn btn-primary" id="Download">Download PDF</button>
+        {% endif %}
+        <a href="/user/feedback/{{book.id}}" class="btn btn-primary"> Add Feedback</a>
+    </div>
+    
+    
+    <div class="container m-5" id="book">
+        <h1 class="text-center mb-3">{{book.name}}</h1>
+        {{book.content | safe}}
+    </div>
+</div>
+<script>
+    document.getElementById('Download').addEventListener('click', function () {
+        var element = document.getElementById('book');
+        html2pdf(element);
+    });
+</script>
+
+{% endblock %}

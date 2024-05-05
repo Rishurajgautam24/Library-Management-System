@@ -1,0 +1,34 @@
+{% extends "librarian/base.html" %}
+{% block title %}
+Feedbacks
+{% endblock %}
+{% block content %}
+<div class="container mt-5 ">
+  <div class="mt-5 d-flex align-items-center justify-content-between">
+    <h2 class="flex-shrink-0">
+      All Feedbacks
+    </h2>
+  </div>
+  <table class="table  table-bordered table-striped table-hover">
+    <thead class="table-success">
+      <tr>
+        <th class="p-3 bg-primary text-white">Feedback ID</th>
+        <th class="p-3 bg-primary text-white">Book Name</th>
+        <th class="p-3 bg-primary text-white">User Name</th>
+        <th class="p-3 bg-primary text-white">Feedback</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for feedback in feedbacks %}
+      <tr>
+        <td class="p-3">{{ feedback.id }}</td>
+        <td class="p-3">{{ feedback.book.name }}</td>
+        <td class="p-3">{{ feedback.user.username }}</td>
+        <td class="p-3">{{ feedback.feedback }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
