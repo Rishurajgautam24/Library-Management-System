@@ -24,8 +24,8 @@ Library | Edit Book
             </div>
             
             <div class="mb-3">
-                <label for="section_name" class="form-label" name="section_name">Section Name</label>
-                <select class="form-select" aria-label="Default select example" id="section_name" name="section_name">
+                <label for="section_id" class="form-label" name="section_id">Section Name</label>
+                <select class="form-select" aria-label="Default select example" id="section_id" name="section_id">
                     <option selected>{{ book.section_name }}</option>
                     {% for section in sections %}
                     <option value="{{ section.id }}">{{ section.name }}</option>
